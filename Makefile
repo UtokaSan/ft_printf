@@ -6,7 +6,7 @@
 #    By: florianb <florianb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/12 02:35:43 by florianb          #+#    #+#              #
-#    Updated: 2024/11/12 02:38:28 by florianb         ###   ########.fr        #
+#    Updated: 2024/11/12 21:27:49 by florianb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ AR = ar rc
 NAME = libftprintf.a
 
 SRCS_DIR = srcs
-HEADERS_DIR = headers
+HEADERS_DIR = includes
 LIBFT_DIR = lib/libft
 
 SRCS = $(wildcard $(SRCS_DIR)/*.c)
