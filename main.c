@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: florianb <florianb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 02:37:39 by florianb          #+#    #+#             */
-/*   Updated: 2024/11/12 21:29:48 by florianb         ###   ########.fr       */
+/*   Created: 2024/11/12 22:15:37 by florianb          #+#    #+#             */
+/*   Updated: 2024/11/13 00:08:27 by florianb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
+#include "libft.h"
 
-# include <stdarg.h>
-
-int		ft_printf(const char *format, ...);
-
-typedef struct s_flags
+int	main(void)
 {
-	char	value;
-	void	(*action)(va_list);
-}	t_flags;
+	int	a;
+	int	*ptr;
 
-static t_flags	g_flags[3];
-#endif
+	ptr = &a;
+	a = 42;
+	ft_printf("Hello ss%s World%p\n", "42", ptr);
+	return (0);
+}
