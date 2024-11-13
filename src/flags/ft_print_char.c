@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_print_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: florianb <florianb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 22:15:37 by florianb          #+#    #+#             */
-/*   Updated: 2024/11/13 13:54:14 by florianb         ###   ########.fr       */
+/*   Created: 2024/11/13 11:29:16 by florianb          #+#    #+#             */
+/*   Updated: 2024/11/13 11:29:55 by florianb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-int	main(void)
+void	ft_putchar_print(va_list args)
 {
-	int	a;
-	int	*ptr;
+	char	c;
 
-	ptr = &a;
-	a = 42;
-	ft_printf("Hello ss%s World%p\nje test les unsigned int%r je veux 120%%", "42", ptr, 255);
-	return (0);
+	c = va_arg(args, int);
+	write(1, &c, 1);
 }

@@ -6,7 +6,7 @@
 /*   By: florianb <florianb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 02:37:39 by florianb          #+#    #+#             */
-/*   Updated: 2024/11/12 23:43:15 by florianb         ###   ########.fr       */
+/*   Updated: 2024/11/13 13:54:46 by florianb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,24 @@
 # include <stdarg.h>
 # include <unistd.h>
 
+# define NUM_FLAGS 8
+
 int		ft_printf(const char *format, ...);
 void	ft_putchar_print(va_list args);
 void	ft_putstr_print(va_list args);
-void	ft_putnbr_print(va_list args);
+void	ft_decimal_print(va_list args);
 void	ft_print_pointer(va_list args);
-
+void	ft_print_unsigned_decimal(va_list args);
+void	ft_print_hex_lowercase(va_list args);
+void	ft_print_hex_uppercase(va_list args);
+void	ft_putnbr_hex(unsigned long nb, char format_type);
+void	ft_print_percent(va_list args);
 typedef struct s_flags
 {
 	char	value;
 	void	(*action)(va_list);
 }	t_flags;
 
-extern t_flags	g_flags[4];
+extern t_flags	g_flags[NUM_FLAGS];
 
 #endif

@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_print_decimal.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: florianb <florianb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 22:15:37 by florianb          #+#    #+#             */
-/*   Updated: 2024/11/13 13:54:14 by florianb         ###   ########.fr       */
+/*   Created: 2024/11/13 11:32:14 by florianb          #+#    #+#             */
+/*   Updated: 2024/11/13 11:35:20 by florianb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-int	main(void)
+void	ft_decimal_print(va_list args)
 {
-	int	a;
-	int	*ptr;
+	int	nbr;
 
-	ptr = &a;
-	a = 42;
-	ft_printf("Hello ss%s World%p\nje test les unsigned int%r je veux 120%%", "42", ptr, 255);
-	return (0);
+	nbr = va_arg(args, int);
+	ft_putnbr_fd(nbr, 1);
 }
