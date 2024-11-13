@@ -6,7 +6,7 @@
 /*   By: florianb <florianb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 02:37:39 by florianb          #+#    #+#             */
-/*   Updated: 2024/11/13 13:54:46 by florianb         ###   ########.fr       */
+/*   Updated: 2024/11/13 14:01:44 by florianb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdarg.h>
 # include <unistd.h>
 
-# define NUM_FLAGS 8
+# define NUM_FLAGS 9
 
 int		ft_printf(const char *format, ...);
 void	ft_putchar_print(va_list args);
