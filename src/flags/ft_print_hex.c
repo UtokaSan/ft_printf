@@ -6,7 +6,7 @@
 /*   By: florianb <florianb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:37:49 by florianb          #+#    #+#             */
-/*   Updated: 2024/11/13 11:47:26 by florianb         ###   ########.fr       */
+/*   Updated: 2024/11/14 22:47:48 by florianb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,20 @@ void	ft_putnbr_hex(unsigned long nb, char format_type)
 	}
 }
 
-void	ft_print_hex_lowercase(va_list args)
+int	ft_print_hex_lowercase(va_list args)
 {
 	unsigned int	nbr;
 
 	nbr = va_arg(args, unsigned int);
 	ft_putnbr_hex(nbr, 'a');
+	return (ft_nbrlen(nbr));
 }
 
-void	ft_print_hex_uppercase(va_list args)
+int	ft_print_hex_uppercase(va_list args)
 {
 	unsigned int	nbr;
 
 	nbr = va_arg(args, unsigned int);
 	ft_putnbr_hex(nbr, 'A');
+	return (ft_nbrlen(nbr));
 }

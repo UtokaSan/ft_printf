@@ -6,7 +6,7 @@
 /*   By: florianb <florianb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 02:55:35 by florianb          #+#    #+#             */
-/*   Updated: 2024/11/13 14:01:48 by florianb         ###   ########.fr       */
+/*   Updated: 2024/11/14 23:04:01 by florianb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,57 +23,87 @@ void	ft_putnbr_print(va_list args)
 	ft_putnbr_fd(nbr, 1);
 }
 
-static void	init_flags(void)
+int	ft_nbrlen(int nbr)
 {
-	g_flags[0] = (t_flags){'s', &ft_putstr_print};
-	g_flags[1] = (t_flags){'d', &ft_decimal_print};
-	g_flags[2] = (t_flags){'c', &ft_putchar_print};
-	g_flags[3] = (t_flags){'p', &ft_print_pointer};
-	g_flags[4] = (t_flags){'i', &ft_decimal_print};
-	g_flags[5] = (t_flags){'u', &ft_print_unsigned_decimal};
-	g_flags[6] = (t_flags){'x', &ft_print_hex_lowercase};
-	g_flags[7] = (t_flags){'X', &ft_print_hex_uppercase};
-	g_flags[8] = (t_flags){'%', &ft_print_percent};
+	int	len;
+
+	len = 0;
+	if (nbr == 0)
+		return (1);
+	if (nbr < 0)
+	{
+		len++;
+		nbr *= -1;
+	}
+	while (nbr > 0)
+	{
+		nbr /= 10;
+		len++;
+	}
+	return (len);
 }
 
-static void	search_flags(const char *format, va_list args)
+static void	init_flags(void)
+{
+	static char	specifiers[] = "sdcpiuxX%";
+	static int	(*actions[])(va_list) = {
+		ft_putstr_print,
+		ft_decimal_print,
+		ft_putchar_print,
+		ft_print_pointer,
+		ft_decimal_print,
+		ft_print_unsigned_decimal,
+		ft_print_hex_lowercase,
+		ft_print_hex_uppercase,
+		ft_print_percent
+	};
+	size_t		i;
+
+	i = 0;
+	while (i < NUM_FLAGS)
+	{
+		g_flags[i].value = specifiers[i];
+		g_flags[i].action = actions[i];
+		i++;
+	}
+}
+
+static int	search_flags(const char *format, va_list args)
 {
 	size_t	j;
 	char	*flag_pos;
+	size_t	count;
 
 	j = 0;
+	count = 0;
 	while (*format)
 	{
-		if (*format == '%')
+		if (*format == '%' && *(++format))
 		{
-			format++;
 			flag_pos = ft_strchr("sdcpiuxX%", *format);
 			if (flag_pos)
 			{
 				j = flag_pos - "sdcpiuxX%";
-				g_flags[j].action(args);
+				count += g_flags[j].action(args);
 			}
 			else
-			{
-				ft_putchar_fd('%', 1);
-				ft_putchar_fd(*format, 1);
-			}
+				count += write(1, "%", 1) + write(1, format, 1);
 		}
 		else
-			ft_putchar_fd(*format, 1);
+			count += write(1, format, 1);
 		format++;
 	}
+	return (count);
 }
 
 int	ft_printf(const char *format, ...)
 {
-	int		count;
 	va_list	args;
+	int		count;
 
-	count = 0;
 	va_start(args, format);
 	init_flags();
-	search_flags(format, args);
+	count = search_flags(format, args);
 	va_end(args);
 	return (count);
 }
