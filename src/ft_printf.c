@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: florianb <florianb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fboulbes <fboulbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 02:55:35 by florianb          #+#    #+#             */
-/*   Updated: 2024/11/14 23:04:01 by florianb         ###   ########.fr       */
+/*   Created: 2024/11/12 02:55:35 by fboulbes          #+#    #+#             */
+/*   Updated: 2024/11/20 17:45:49 by fboulbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	ft_nbrlen(int nbr)
 	len = 0;
 	if (nbr == 0)
 		return (1);
+	if (nbr == -2147483648)
+		return (11);
 	if (nbr < 0)
 	{
 		len++;

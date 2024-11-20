@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_pointer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: florianb <florianb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fboulbes <fboulbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 11:31:11 by florianb          #+#    #+#             */
-/*   Updated: 2024/11/14 22:49:39 by florianb         ###   ########.fr       */
+/*   Created: 2024/11/13 11:31:11 by fboulbes          #+#    #+#             */
+/*   Updated: 2024/11/20 17:17:25 by fboulbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,18 @@
 
 int	ft_print_pointer(va_list args)
 {
-	void	*ptr;
+	void			*ptr;
+	unsigned long	address;
+	int				len;
 
 	ptr = va_arg(args, void *);
+	if (ptr == NULL)
+	{
+		write(1, "(nil)", 5);
+		return (5);
+	}
+	address = (unsigned long)ptr;
 	write(1, "0x", 2);
-	ft_putnbr_hex((unsigned long)ptr, 'a');
-	return (ft_nbrlen((unsigned long)ptr) + 2);
+	len = ft_putnbr_hex(address, 'a');
+	return (len + 2);
 }
