@@ -1,36 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   search_flags.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fboulbes <fboulbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 02:55:35 by fboulbes          #+#    #+#             */
-/*   Updated: 2024/11/20 19:04:28 by fboulbes         ###   ########.fr       */
+/*   Created: 2024/11/20 18:41:35 by fboulbes          #+#    #+#             */
+/*   Updated: 2024/11/20 18:50:50 by fboulbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-t_flags	g_flags[NUM_FLAGS];
-
-void	ft_putnbr_print(va_list args)
+int	search_flags(const char *format, va_list args)
 {
-	int	nbr;
+	size_t	j;
+	char	*flag_pos;
+	size_t	count;
 
-	nbr = va_arg(args, int);
-	ft_putnbr_fd(nbr, 1);
-}
-
-int	ft_printf(const char *format, ...)
-{
-	va_list	args;
-	int		count;
-
-	va_start(args, format);
-	init_flags();
-	count = search_flags(format, args);
-	va_end(args);
+	j = 0;
+	count = 0;
+	while (*format)
+	{
+		if (*format == '%' && *(++format))
+		{
+			flag_pos = ft_strchr("sdcpiuxX%", *format);
+			if (flag_pos)
+			{
+				j = flag_pos - "sdcpiuxX%";
+				count += g_flags[j].action(args);
+			}
+			else
+				count += write(1, "%", 1) + write(1, format, 1);
+		}
+		else
+			count += write(1, format, 1);
+		format++;
+	}
 	return (count);
 }

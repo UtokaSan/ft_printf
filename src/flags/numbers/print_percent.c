@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_pointer.c                                 :+:      :+:    :+:   */
+/*   print_percent.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fboulbes <fboulbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 11:31:11 by fboulbes          #+#    #+#             */
-/*   Updated: 2024/11/20 17:17:25 by fboulbes         ###   ########.fr       */
+/*   Created: 2024/11/13 13:52:50 by fboulbes          #+#    #+#             */
+/*   Updated: 2024/11/20 18:32:13 by fboulbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-int	ft_print_pointer(va_list args)
+int	print_percent(va_list args)
 {
-	void			*ptr;
-	unsigned long	address;
-	int				len;
-
-	ptr = va_arg(args, void *);
-	if (ptr == NULL)
-	{
-		write(1, "(nil)", 5);
-		return (5);
-	}
-	address = (unsigned long)ptr;
-	write(1, "0x", 2);
-	len = ft_putnbr_hex(address, 'a');
-	return (len + 2);
+	(void)args;
+	write(1, "%", 1);
+	return (1);
 }

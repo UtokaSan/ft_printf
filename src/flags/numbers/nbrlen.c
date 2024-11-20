@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_string.c                                  :+:      :+:    :+:   */
+/*   nbrlen.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fboulbes <fboulbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 11:30:12 by fboulbes          #+#    #+#             */
-/*   Updated: 2024/11/20 16:41:53 by fboulbes         ###   ########.fr       */
+/*   Created: 2024/11/20 19:04:49 by fboulbes          #+#    #+#             */
+/*   Updated: 2024/11/20 19:05:33 by fboulbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-int	ft_putstr_print(va_list args)
+int	nbrlen(int nbr)
 {
-	const char	*str;
+	int	len;
 
-	str = va_arg(args, const char *);
-	if (str == NULL)
+	len = 0;
+	if (nbr == 0)
+		return (1);
+	if (nbr == -2147483648)
+		return (11);
+	if (nbr < 0)
 	{
-		write(1, "(null)", 6);
-		return (6);
+		len++;
+		nbr *= -1;
 	}
-	write(1, str, ft_strlen(str));
-	return (ft_strlen(str));
+	while (nbr > 0)
+	{
+		nbr /= 10;
+		len++;
+	}
+	return (len);
 }

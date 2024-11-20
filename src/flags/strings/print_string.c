@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   print_string.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fboulbes <fboulbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 02:55:35 by fboulbes          #+#    #+#             */
-/*   Updated: 2024/11/20 19:04:28 by fboulbes         ###   ########.fr       */
+/*   Created: 2024/11/13 11:30:12 by fboulbes          #+#    #+#             */
+/*   Updated: 2024/11/20 18:34:28 by fboulbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-t_flags	g_flags[NUM_FLAGS];
-
-void	ft_putnbr_print(va_list args)
+int	putstr_print(va_list args)
 {
-	int	nbr;
+	const char	*str;
 
-	nbr = va_arg(args, int);
-	ft_putnbr_fd(nbr, 1);
-}
-
-int	ft_printf(const char *format, ...)
-{
-	va_list	args;
-	int		count;
-
-	va_start(args, format);
-	init_flags();
-	count = search_flags(format, args);
-	va_end(args);
-	return (count);
+	str = va_arg(args, const char *);
+	if (str == NULL)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
+	write(1, str, ft_strlen(str));
+	return (ft_strlen(str));
 }

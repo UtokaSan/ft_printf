@@ -6,7 +6,7 @@
 #    By: fboulbes <fboulbes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/12 02:35:43 by fboulbes          #+#    #+#              #
-#    Updated: 2024/11/20 18:13:41 by fboulbes         ###   ########.fr        #
+#    Updated: 2024/11/20 19:03:34 by fboulbes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,18 +17,10 @@ AR = ar rc
 NAME = libftprintf.a
 
 SRCS_DIR = src
-FLAGS_DIR = $(SRCS_DIR)/flags
 HEADERS_DIR = include
 LIBFT_DIR = lib/libft
 
-SRCS = $(SRCS_DIR)/ft_printf.c \
-       $(FLAGS_DIR)/ft_print_char.c \
-       $(FLAGS_DIR)/ft_print_decimal.c \
-       $(FLAGS_DIR)/ft_print_hex.c \
-       $(FLAGS_DIR)/ft_print_percent.c \
-       $(FLAGS_DIR)/ft_print_pointer.c \
-       $(FLAGS_DIR)/ft_print_string.c \
-       $(FLAGS_DIR)/ft_print_unsigned.c 
+SRCS = $(wildcard $(SRCS_DIR)/*.c) $(wildcard $(SRCS_DIR)/*/*.c) $(wildcard $(SRCS_DIR)/*/*/*.c)
 
 OBJS = $(SRCS:.c=.o)
 
@@ -59,4 +51,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re $(MAIN)
+.PHONY: all clean fclean re

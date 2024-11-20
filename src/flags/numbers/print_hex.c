@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_hex.c                                     :+:      :+:    :+:   */
+/*   print_hex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fboulbes <fboulbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:37:49 by fboulbes          #+#    #+#             */
-/*   Updated: 2024/11/20 17:41:18 by fboulbes         ###   ########.fr       */
+/*   Updated: 2024/11/20 18:36:10 by fboulbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-int	ft_putnbr_hex(unsigned long nb, char format_type)
+int	putnbr_hex(unsigned long nb, char format_type)
 {
 	int		len;
 	char	*hex_digits;
@@ -25,8 +25,8 @@ int	ft_putnbr_hex(unsigned long nb, char format_type)
 		hex_digits = "0123456789ABCDEF";
 	if (nb >= 16)
 	{
-		len += ft_putnbr_hex(nb / 16, format_type);
-		len += ft_putnbr_hex(nb % 16, format_type);
+		len += putnbr_hex(nb / 16, format_type);
+		len += putnbr_hex(nb % 16, format_type);
 	}
 	else
 	{
@@ -36,18 +36,18 @@ int	ft_putnbr_hex(unsigned long nb, char format_type)
 	return (len);
 }
 
-int	ft_print_hex_lowercase(va_list args)
+int	print_hex_lowercase(va_list args)
 {
 	unsigned int	nbr;
 
 	nbr = va_arg(args, unsigned int);
-	return (ft_putnbr_hex(nbr, 'a'));
+	return (putnbr_hex(nbr, 'a'));
 }
 
-int	ft_print_hex_uppercase(va_list args)
+int	print_hex_uppercase(va_list args)
 {
 	unsigned int	nbr;
 
 	nbr = va_arg(args, unsigned int);
-	return (ft_putnbr_hex(nbr, 'A'));
+	return (putnbr_hex(nbr, 'A'));
 }

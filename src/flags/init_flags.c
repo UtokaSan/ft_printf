@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   init_flags.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fboulbes <fboulbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 02:55:35 by fboulbes          #+#    #+#             */
-/*   Updated: 2024/11/20 19:04:28 by fboulbes         ###   ########.fr       */
+/*   Created: 2024/11/20 18:31:01 by fboulbes          #+#    #+#             */
+/*   Updated: 2024/11/20 18:53:05 by fboulbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
 
-t_flags	g_flags[NUM_FLAGS];
-
-void	ft_putnbr_print(va_list args)
+void	init_flags(void)
 {
-	int	nbr;
+	static char	specifiers[] = "sdcpiuxX%";
+	static int	(*actions[])(va_list) = {
+		putstr_print,
+		decimal_print,
+		putchar_print,
+		print_pointer,
+		decimal_print,
+		print_unsigned_decimal,
+		print_hex_lowercase,
+		print_hex_uppercase,
+		print_percent
+	};
+	size_t		i;
 
-	nbr = va_arg(args, int);
-	ft_putnbr_fd(nbr, 1);
-}
-
-int	ft_printf(const char *format, ...)
-{
-	va_list	args;
-	int		count;
-
-	va_start(args, format);
-	init_flags();
-	count = search_flags(format, args);
-	va_end(args);
-	return (count);
+	i = 0;
+	while (i < NUM_FLAGS)
+	{
+		g_flags[i].value = specifiers[i];
+		g_flags[i].action = actions[i];
+		i++;
+	}
 }

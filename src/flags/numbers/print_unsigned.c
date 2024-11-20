@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_unsigned.c                                :+:      :+:    :+:   */
+/*   print_unsigned.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fboulbes <fboulbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:36:30 by fboulbes          #+#    #+#             */
-/*   Updated: 2024/11/20 18:07:01 by fboulbes         ###   ########.fr       */
+/*   Updated: 2024/11/20 18:36:47 by fboulbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	nbrlen_unsigned(unsigned int nbr)
 	return (len);
 }
 
-int	ft_print_unsigned_decimal(va_list args)
+int	print_unsigned_decimal(va_list args)
 {
 	unsigned int	nbr;
 
