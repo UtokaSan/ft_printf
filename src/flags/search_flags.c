@@ -6,7 +6,7 @@
 /*   By: fboulbes <fboulbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 18:41:35 by fboulbes          #+#    #+#             */
-/*   Updated: 2024/11/20 18:50:50 by fboulbes         ###   ########.fr       */
+/*   Updated: 2025/01/27 20:46:09 by fboulbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 int	search_flags(const char *format, va_list args)
 {
-	size_t	j;
 	char	*flag_pos;
 	size_t	count;
+	t_flags	*flgs;
 
-	j = 0;
+	flgs = init_flags();
 	count = 0;
 	while (*format)
 	{
@@ -27,10 +27,7 @@ int	search_flags(const char *format, va_list args)
 		{
 			flag_pos = ft_strchr("sdcpiuxX%", *format);
 			if (flag_pos)
-			{
-				j = flag_pos - "sdcpiuxX%";
-				count += g_flags[j].action(args);
-			}
+				count += flgs[flag_pos - "sdcpiuxX%"].action(args);
 			else
 				count += write(1, "%", 1) + write(1, format, 1);
 		}

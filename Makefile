@@ -6,7 +6,7 @@
 #    By: fboulbes <fboulbes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/12 02:35:43 by fboulbes          #+#    #+#              #
-#    Updated: 2024/11/20 19:03:34 by fboulbes         ###   ########.fr        #
+#    Updated: 2025/01/27 20:53:02 by fboulbes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,18 @@ SRCS_DIR = src
 HEADERS_DIR = include
 LIBFT_DIR = lib/libft
 
-SRCS = $(wildcard $(SRCS_DIR)/*.c) $(wildcard $(SRCS_DIR)/*/*.c) $(wildcard $(SRCS_DIR)/*/*/*.c)
+SRCS = \
+	src/ft_printf.c \
+	src/flags/init_flags.c \
+	src/flags/search_flags.c \
+	src/flags/memory/print_pointer.c \
+	src/flags/numbers/nbrlen.c \
+	src/flags/numbers/print_decimal.c \
+	src/flags/numbers/print_hex.c \
+	src/flags/numbers/print_percent.c \
+	src/flags/numbers/print_unsigned.c \
+	src/flags/strings/print_char.c \
+	src/flags/strings/print_string.c
 
 OBJS = $(SRCS:.c=.o)
 
